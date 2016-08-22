@@ -1,0 +1,3 @@
+
+#不提交java生成的class文件
+*.class

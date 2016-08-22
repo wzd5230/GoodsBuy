@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 引用db.properties配置文件 -->
+	<properties resource="db.properties"/>
+	
+	<!-- 设置类的别名，方便在mapper文件中引用该类型 -->
+	<!-- 单个类的别名设置 -->
+	<!-- <typeAliases>
+		<typeAlias type="cn.wzd.po.User" alias="user"/>
+	</typeAliases> -->
+	<!-- 包下多个类的别名设置，在包下的Java bean中，没有使用@Alias注解时默认设置为
+	类名(首字母大小写都可以使用)，使用@Aliase注解，并设置value值，则别名为该value值 -->
+	<typeAliases>
+		<package name="cn.wzd.po"/>
+	</typeAliases>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>
+  	<!-- 加载映射文件 -->
+    <!-- 通过包名加载多个映射文件，要求接口和xml文件同名，并放在相同的包中 -->
+    <package name="cn.wzd.mapper"/>
+  </mappers>
+</configuration>
