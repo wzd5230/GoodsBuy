@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.11 (32 bit)
-MySQL - 5.7.12-log : Database - mytatis
+SQLyog Ultimate v12.09 (64 bit)
+MySQL - 5.7.12 : Database - mytatis
 *********************************************************************
 */
 
@@ -48,9 +48,11 @@ CREATE TABLE `orderdetail` (
   KEY `constraint_fk3` (`orders_id`),
   CONSTRAINT `constraint_fk2` FOREIGN KEY (`items_id`) REFERENCES `items` (`id`),
   CONSTRAINT `constraint_fk3` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `orderdetail` */
+
+insert  into `orderdetail`(`id`,`orders_id`,`items_id`,`items_num`) values (1,1,1,2),(2,1,5,2),(3,1,6,2),(4,2,2,20),(5,2,6,2),(6,3,8,2),(7,3,7,100),(8,3,5,2),(9,3,6,2),(10,4,7,999),(11,4,5,2),(12,4,6,2),(14,5,3,2),(15,5,4,2),(16,5,6,10),(17,5,5,4);
 
 /*Table structure for table `orders` */
 

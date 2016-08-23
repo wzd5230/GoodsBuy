@@ -1,6 +1,5 @@
 package cn.wzd.junitTest;
 
-import static org.junit.Assert.*;
 
 import java.io.InputStream;
 import java.util.List;
@@ -50,5 +49,17 @@ public class OrderUserTest {
 		
 		session.close();
 	}
-
+	
+	//findUserAndItemsResultMap
+	@Test
+	public void testFindUserAndItemsResultMap() throws Exception {
+		SqlSession session = sqlSessionFactory.openSession();
+		OrderUser orderUser = session.getMapper(OrderUser.class);
+		
+		List<User> users = orderUser.findUserAndItemsResultMap();
+		
+		System.out.println("find list size====>"+users.size());
+		
+		session.close();
+	}
 }
