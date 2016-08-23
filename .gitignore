@@ -1,3 +1,3 @@
 
-#涓嶆彁浜ava鐢熸垚鐨刢lass鏂囦欢
-*.class
+#忽略bin文件夹下生成的文件
+/bin/
