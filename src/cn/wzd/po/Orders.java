@@ -1,6 +1,7 @@
 package cn.wzd.po;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
 	private int id;
@@ -9,7 +10,11 @@ public class Orders {
 	private Date createtime;
 	private String note;
 	
+	//关联用户信息
 	private User user;
+	
+	//关联订单详细信息
+	private List<OrderDetail> orderDetails;
 	
 	public int getId() {
 		return id;
@@ -46,6 +51,12 @@ public class Orders {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 	
 	

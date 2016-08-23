@@ -13,4 +13,7 @@ public interface OrderUser {
 	//查询用户关联查询订单信息，一对多的关系
 	public List<User> findUserAndOrdersResultMap() throws Exception;
 	
+	//查询用户表，关联查询商items表，多对多关系
+	public List<User> findUserAndItemsResultMap() throws Exception;
+	
 }

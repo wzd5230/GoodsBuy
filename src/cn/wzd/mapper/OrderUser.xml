@@ -43,6 +43,43 @@
 			<result column="orders_note" property="note"/>
 		</collection>
 	</resultMap>
+	
+	<!-- 查询用户表关联查询商品表的映射 -->
+	<resultMap type="user" id="UserAndItemsResultMap">
+		<!-- 查询返回表中的唯一标识列的映射 -->
+		<id column="user_id" property="id"/>
+		
+		<!-- 其他普通列的映射 -->
+		<result column="user_username" property="username"/>
+		<result column="user_birthday" property="birthday"/>
+		<result column="user_sex" property="sex"/>
+		<result column="user_address" property="address"/>
+		
+		<!-- 关联的订单表，一对多，使用collection -->
+		<collection property="orders" ofType="orders">
+			<id column="orders_id" property="id"/>
+			
+			<result column="orders_number" property="number"/>
+			<result column="orders_createtime" property="createtime"/>
+			<result column="orders_note" property="note"/>	
+			
+			<!-- 关联查询订单详细表，一对多，使用collection -->
+			<collection property="orderDetails" ofType="orderDetail">
+				<id column="orderdetail_id" property="id"/>
+				
+				<result column="orderdetail_items_num" property="items_num"/>
+				
+				<!-- 关联查询商品详细表，一对一，使用association -->
+				<association property="items" javaType="items">
+					<id column="items_id" property="id"/>
+					
+					<result column="items_name" property="name"/>
+					<result column="items_price" property="price"/>
+					<result column="items_detail" property="detail"/>
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
 
 	<!-- 查询order表关联查询user表 -->
 	<select id="findOrderAndUserResultMap" resultMap="OrderAndUserResultMap">
@@ -80,6 +117,40 @@
 		orders,USER
 	WHERE
 		orders.user_id=user.id
+	</select>
+	
+	<!-- 查询user表，关联查询items表 -->
+	<select id="findUserAndItemsResultMap" resultMap="UserAndItemsResultMap">
+	SELECT
+	  user.id AS user_id,
+	  user.username AS user_username,
+	  user.birthday AS user_birthday,
+	  user.sex AS user_sex,
+	  user.address AS user_address,
+	  
+	  orders.id AS orders_id,
+	  orders.number AS orders_number,
+	  orders.createtime AS orders_createtime,
+	  orders.note AS orders_note,
+	  
+	  orderdetail.id AS orderdetail_id,
+	  orderdetail.items_num AS orderdetail_items_num,
+	  
+	  items.id AS items_id,
+	  items.name AS items_name,
+	  items.price AS items_price,
+	  items.detail AS items_detail
+	FROM
+	  user AS user,
+	  orders AS orders,
+	  orderdetail AS orderdetail,
+	  items AS items
+	WHERE
+	  user.id=orders.user_id
+	AND
+	  orderdetail.orders_id=orders.id
+	AND
+	  orderdetail.items_id=items.id;
 	</select>
 
 
