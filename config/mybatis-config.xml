@@ -7,6 +7,14 @@
 	<!-- 引用db.properties配置文件 -->
 	<properties resource="db.properties"/>
 	
+	<!-- 设置信息，该标签需要放在前面，否则会报错 -->
+	<settings>
+		<!-- 开启懒加载使能 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 关闭激进懒加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+	</settings>
+	
 	<!-- 设置类的别名，方便在mapper文件中引用该类型 -->
 	<!-- 单个类的别名设置 -->
 	<!-- <typeAliases>
@@ -34,5 +42,6 @@
   	<!-- 加载映射文件 -->
     <!-- 通过包名加载多个映射文件，要求接口和xml文件同名，并放在相同的包中 -->
     <package name="cn.wzd.mapper"/>
+    <!-- <package name="cn.wzd.mapper.lazy"/> -->
   </mappers>
 </configuration>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cn.wzd.mapper.lazy.UserOrdersItems">
+
+	<!-- 查询订单，使用延迟加载的方式关联查询用户信息，延迟加载的resultMap -->
+	<resultMap type="orders" id="OrderUserResultMapLazy">
+		<!-- 订单信息进行属性映射 -->
+		<id column="id" property="id"/>
+		
+		<result column="user_id" property="user_id"/>
+		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="note" property="note"/>
+		
+		<!-- 延迟加载查询用户信息，通过订单中的user_id,作为findUserById的查询参数 -->
+		<association property="user" javaType="user" select="findUserById" column="user_id">
+		
+		</association>
+	</resultMap>
+
+	<!-- 查询订单，使用延迟加载的方式关联查询用户信息 -->
+	<select id="findOrderUserResultMapLazy" resultMap="OrderUserResultMapLazy">
+		SELECT * FROM orders;
+	</select>
+	
+	<!-- 通过用户id查询用户表中的信息 -->
+	<select id="findUserById" parameterType="int" resultType="user">
+		SELECT 
+		  id As id,
+		  username AS username,
+		  birthday AS birthday,
+		  sex AS sex,
+		  address AS address
+		FROM 
+		  user
+		WHERE
+		  user.id=#{value}
+	</select>
+
+</mapper>
