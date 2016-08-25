@@ -39,5 +39,18 @@
 		WHERE
 		  user.id=#{value}
 	</select>
+	
+	<!-- 更新user用户信息表 -->
+	<update id="updateUser" parameterType="user">
+		UPDATE 
+		  user
+		SET
+		  username=#{username},
+		  sex=#{sex},
+		  birthday=#{birthday},
+		  address=#{address}
+		WHERE
+		  id=#{id}
+	</update>
 
 </mapper>
