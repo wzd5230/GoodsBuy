@@ -1,9 +1,10 @@
 package cn.wzd.po;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class User {
+public class User implements Serializable{
 	private int id;
 	private String username;
 	private Date birthday;
@@ -49,6 +50,11 @@ public class User {
 	}
 	public void setOrders(List<Orders> orders) {
 		this.orders = orders;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", birthday=" + birthday + ", sex=" + sex + ", address="
+				+ address + "]";
 	}
 	
 	
