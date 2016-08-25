@@ -64,6 +64,8 @@ public class Cache1Test {
 		
 		UserOrdersItems userOrdersItems = session.getMapper(UserOrdersItems.class);
 		
+		System.out.println("----->class name: "+userOrdersItems.getClass().getName());
+		
 		/*
 		 * 执行该语句的时候，mybatis会在一级缓存中（hashMap）查找该key是否有值。如果没有则会执行相应的
 		 * sql语句，从数据库读取该用户条目。

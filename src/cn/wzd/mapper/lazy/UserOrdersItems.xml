@@ -5,6 +5,9 @@
   
 <mapper namespace="cn.wzd.mapper.lazy.UserOrdersItems">
 
+	<!-- 开启该namespace下的mapper对应的二级缓存 -->
+	<cache/>
+
 	<!-- 查询订单，使用延迟加载的方式关联查询用户信息，延迟加载的resultMap -->
 	<resultMap type="orders" id="OrderUserResultMapLazy">
 		<!-- 订单信息进行属性映射 -->
